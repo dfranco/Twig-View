@@ -48,9 +48,9 @@ class TwigRuntimeExtensionTest extends TestCase
      * Map a route to the given route collector.
      *
      * @param RouteCollector $routeCollector
-     * @param array          $methods
-     * @param string         $pattern
-     * @param string         $routeName
+     * @param array $methods
+     * @param string $pattern
+     * @param string $routeName
      *
      * @return RouteInterface
      */
@@ -79,11 +79,11 @@ class TwigRuntimeExtensionTest extends TestCase
     /**
      * @dataProvider isCurrentUrlProvider
      *
-     * @param string      $pattern
-     * @param array       $data
-     * @param string      $path
+     * @param string $pattern
+     * @param array $data
+     * @param string $path
      * @param string|null $basePath
-     * @param bool        $expected
+     * @param bool $expected
      */
     public function testIsCurrentUrl(string $pattern, array $data, string $path, ?string $basePath, bool $expected)
     {
@@ -125,7 +125,7 @@ class TwigRuntimeExtensionTest extends TestCase
      * @param string $pattern
      * @param string $url
      * @param string $basePath
-     * @param bool   $withQueryString
+     * @param bool $withQueryString
      */
     public function testCurrentUrl(string $pattern, string $url, string $basePath, bool $withQueryString)
     {
@@ -138,7 +138,7 @@ class TwigRuntimeExtensionTest extends TestCase
         $uriProphecy = $this->prophesize(UriInterface::class);
 
         $path = parse_url($url, PHP_URL_PATH);
-        $query = parse_url($url, PHP_URL_QUERY);
+        $query = parse_url($url, PHP_URL_QUERY) ?? '';
 
         $uriProphecy
             ->getPath()
@@ -178,8 +178,8 @@ class TwigRuntimeExtensionTest extends TestCase
      * @dataProvider urlForProvider
      *
      * @param string $pattern
-     * @param array  $routeData
-     * @param array  $queryParams
+     * @param array $routeData
+     * @param array $queryParams
      * @param string $basePath
      * @param string $expectedUrl
      */
@@ -224,8 +224,8 @@ class TwigRuntimeExtensionTest extends TestCase
      * @dataProvider fullUrlForProvider
      *
      * @param string $pattern
-     * @param array  $routeData
-     * @param array  $queryParams
+     * @param array $routeData
+     * @param array $queryParams
      * @param string $basePath
      * @param string $expectedFullUrl
      */
